@@ -5,7 +5,7 @@ use std::collections::HashMap;
 pub struct Trie(Vertex);
 
 impl Trie {
-    pub fn new(src: Vec<&str>) -> Self {
+    pub fn new(src: &Vec<&str>) -> Self {
         let mut root = Vertex::new(false);
         for str in src {
             if str.is_empty() {
@@ -30,8 +30,8 @@ impl Trie {
         }
         let ch = src.chars().nth(index).unwrap();
         match vertex.edges.get(&ch) {
-            None => false,
             Some(next_vertex) => Self::find_base(src, index + 1, next_vertex),
+            None => false,
         }
     }
 }

@@ -5,7 +5,7 @@ mod tests {
     #[test]
     fn test1() {
         let v = vec!["he", "she", "hers"];
-        let trie = Trie::new(v);
+        let trie = Trie::new(&v);
         assert_eq!(trie.find("he"), true);
         assert_eq!(trie.find("she"), true);
         assert_eq!(trie.find("hers"), true);
@@ -14,7 +14,7 @@ mod tests {
 
     #[test]
     fn test2() {
-        let mut trie = Trie::new(vec!["Random1", "Random2", "Random3"]);
+        let mut trie = Trie::new(&vec!["Random1", "Random2", "Random3"]);
         assert_eq!(trie.find("Random1"), true);
         assert_eq!(trie.find("Random3"), true);
         assert_eq!(trie.find("Random4"), false);
@@ -25,6 +25,6 @@ mod tests {
     #[test]
     #[should_panic(expected = "Blank string not supported")]
     fn test3() {
-        let _trie = Trie::new(vec!["ab", ""]);
+        let _trie = Trie::new(&vec!["ab", ""]);
     }
 }
