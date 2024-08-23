@@ -1,6 +1,6 @@
 mod test;
 
-use std::collections::{HashMap};
+use std::collections::HashMap;
 
 pub struct Trie(Vertex);
 
