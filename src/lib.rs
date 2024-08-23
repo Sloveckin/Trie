@@ -5,19 +5,20 @@ use std::collections::HashMap;
 pub struct Trie(Vertex);
 
 impl Trie {
-    pub fn new(src: &Vec<&str>) -> Self {
+    pub fn new<T: ToString + ?Sized>(src: &Vec<&T>) -> Self {
         let mut root = Vertex::new(false);
-        for str in src {
+        for el in src {
+            let str = el.to_string();
             if str.is_empty() {
                 panic!("Blank string not supported");
             }
-            root.add(str, 0);
+            root.add(&str, 0);
         }
         Trie(root)
     }
 
-    pub fn find(&self, str: &str) -> bool {
-        Self::find_base(str, 0, &self.0)
+    pub fn find<T: ToString + ?Sized>(&self, element: &T) -> bool {
+        Self::find_base(&element.to_string(), 0, &self.0)
     }
 
     pub fn add(&mut self, str: &str) {
