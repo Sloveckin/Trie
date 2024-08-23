@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod tests {
-    use std::fmt::Display;
     use crate::Trie;
+    use std::fmt::Display;
 
     #[test]
     fn test1() {
@@ -29,7 +29,6 @@ mod tests {
         let _trie = Trie::new(&vec!["ab", ""]);
     }
 
-
     #[derive(Clone)]
     struct Point {
         x: i32,
@@ -44,22 +43,23 @@ mod tests {
 
     #[test]
     fn test4() {
-        let p1 = Point {x: 5, y: 32};
-        let p2 = Point {x: 3, y: 10};
-        let p3 = Point {x: -1, y: -3};
+        let p1 = Point { x: 5, y: 32 };
+        let p2 = Point { x: 3, y: 10 };
+        let p3 = Point { x: -1, y: -3 };
 
-        let p4 = Point {x: 0, y: 0};
-        let trie = Trie::new(&vec![
-            &p1,
-            &p2,
-            &p3
-        ]);
+        let p4 = Point { x: 0, y: 0 };
+        let trie = Trie::new(&vec![&p1, &p2, &p3]);
 
         assert_eq!(trie.find(&p1), true);
         assert_eq!(trie.find(&p2), true);
         assert_eq!(trie.find(&p3), true);
         assert_eq!(trie.find(&p4), false);
-
     }
 
+    #[test]
+    fn test5() {
+        let trie = Trie::new(&vec!["first", "second", "first"]);
+        assert_eq!(trie.find("first"), true);
+        assert_eq!(trie.find("second"), true);
+    }
 }

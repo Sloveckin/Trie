@@ -1,6 +1,6 @@
 mod test;
 
-use std::collections::HashMap;
+use std::collections::{HashMap};
 
 pub struct Trie(Vertex);
 
@@ -53,6 +53,9 @@ impl Vertex {
 
 impl Vertex {
     fn add(&mut self, src: &str, index: usize) {
+        if index == src.len() {
+            return;
+        }
         let ch = src.chars().nth(index).unwrap();
         match self.edges.get_mut(&ch) {
             None => {
